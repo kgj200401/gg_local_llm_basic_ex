@@ -216,3 +216,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ollama_basic: generated runtime audio (keep original voice1.mp3/voice2.mp3 samples)
+ollama_basic/voice/answer.mp3
+ollama_basic/voice/answer.wav
+ollama_basic/voice/input.wav

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}  <!-- 부모페이지로 부터 상속을 받는다는 의미 -->
+{% block content %}   <!-- override 자식페이지에서 재정의 하는 블럭 -->
+    <main>
+      <header class="chat-header">
+        <span class="avatar" aria-hidden="true">나</span>
+        <div><h1>나와의 메모</h1><p>나를 성장시키는 작은 기록</p></div>
+        <span class="header-badge">MY</span>
+      </header>
+      <div class="chat-body">
+      <p class="date-divider">오늘의 나에게 남기는 메모</p>
+<!-- 이 부분을 확실하게 이해하고 넘어가기
+<textarea name="task" rows="5" placeholder="오늘 기억하고 싶은 일을 적어보세요." id="task" aria-label="새 메모" required></textarea> 는 태그 사이가
+비어있는 상태로 파일에 저장되어있고 여긴 뭘 입력하든 안바뀜.
+사용자가 뭘 입력하면 그 값은 파일이 아니라 브라우저가 지금 화면에 띄운 이 요소의 실행 중 상태(메모리)에만 저장된다
+그래서 Add버튼 누르면 우리가 따로 만든 기능이 아니라 HTML에서 내장된 동작에 의해 우리가 친 입력값이 "task"와 묶어준다
+그리고 <form> 태그의 action="/add", method="post" 속성값을 읽는다.
+이 정보들로 HTTP 요청이라는 이름의 규격을 따르는 텍스트를 만드는 것.
+그리고 이제 main.py에 @app.post("/add") 이 부분으로 가서 보기-->
+	    <form action="/add" method="post" class="composer">
+	        <!-- <textarea name="task" rows="5" placeholder="Enter your task" id="task" required></textarea> -->
+	        <textarea name="task" rows="5" placeholder="오늘 기억하고 싶은 일을 적어보세요." id="task" aria-label="새 메모" required></textarea>
+	        <button type="submit" id="add_task">
+	          메모 보내기
+	        </button>
+	    </form>
+
+	    <br>
+	    <h2 class="section-title">내 메모 <span>{{ todos | length }}</span></h2>
+
+	    <div>
+	      {% if not todos %}
+	        <br>
+	        <p class="empty-state">아직 나눈 메모가 없어요.<br>첫 번째 메모를 남겨보세요.</p>
+	      {% else %}
+	        {% for todo in todos %}
+	        <div class="task{% if todo.completed %} is-completed{% endif %}">
+                <div class="task-text">
+	            {% if todo.completed %}
+	                <strike>{{ todo.task }}</strike>
+	            {% else %}
+	                {{ todo.task }}
+	            {% endif %}
+	                </div>
+                <div class="task-actions">
+	                    <a href="/edit/{{ todo.id }}" class="todo-btn">수정</a>
+	                    <form action="/delete/{{ todo.id }}" method="post">
+	                        <button type="submit" class="todo-btn">삭제</button>
+	                    </form>
+	                </div>
+	        </div>
+	        {% endfor %}
+	      {% endif %}
+	    </div>
+
+	    </div>
+	    <script src="/static/js/main.js"></script>
+    </main>
+{% endblock content %}

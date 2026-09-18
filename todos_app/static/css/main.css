@@ -1,0 +1,153 @@
+/* 카카오톡 채팅방을 닮은 메모 테마 */
+:root {
+  --chat-bg: #b2c7d9;
+  --yellow: #fee500;
+  --ink: #302b27;
+  --muted: #4e6171;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  min-height: 100vh;
+  padding: 36px 16px;
+  background: #edf0f3;
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+main {
+  width: 100%;
+  max-width: 520px;
+  min-height: calc(100vh - 72px);
+  margin: 0 auto;
+  background: var(--chat-bg);
+  border: 1px solid #a6bccf;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 16px 48px #273f551a;
+}
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+  border-bottom: 1px solid #829db533;
+  background: #ffffff18;
+}
+.avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 17px;
+  background: var(--yellow);
+  font-size: 19px;
+  font-weight: 700;
+}
+h1 { font-size: 19px; letter-spacing: -.6px; }
+.chat-header p { color: var(--muted); font-size: 12px; }
+.header-badge { margin-left: auto; color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: 1px; }
+.chat-body { padding: 24px; }
+.date-divider {
+  width: fit-content;
+  margin: 0 auto 24px;
+  padding: 5px 14px;
+  border-radius: 30px;
+  background: #627f9526;
+  color: #344c60;
+  font-size: 12px;
+}
+.composer {
+  padding: 14px;
+  border: 1px solid #fff;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 3px 10px #273f550a;
+  text-align: right;
+}
+textarea {
+  display: block;
+  width: 100%;
+  min-height: 110px;
+  padding: 8px;
+  resize: vertical;
+  border: 0;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  line-height: 1.7;
+}
+textarea::placeholder { color: #777; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button {
+  min-height: 40px;
+  margin-top: 8px;
+  padding: 9px 18px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--yellow);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+button:hover { background: #f4d900; }
+:where(a, button, textarea, input):focus-visible { outline: 3px solid #365b7b; outline-offset: 3px; }
+.section-title { display: flex; align-items: center; gap: 8px; margin-bottom: 18px; font-size: 13px; color: var(--muted); }
+.section-title span { padding: 1px 7px; border-radius: 20px; background: #ffffff59; font-size: 11px; }
+.task {
+  position: relative;
+  width: fit-content;
+  max-width: 92%;
+  min-width: 140px;
+  margin: 0 7px 20px auto;
+  padding: 14px 16px 10px;
+  border-radius: 14px 3px 14px 14px;
+  background: var(--yellow);
+  box-shadow: 0 2px 3px #273f5510;
+}
+.task::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -7px;
+  border-top: 10px solid var(--yellow);
+  border-right: 8px solid transparent;
+}
+.task-text { white-space: pre-wrap; overflow-wrap: anywhere; }
+.task-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 10px; }
+.todo-btn {
+  display: inline-block;
+  min-height: 28px;
+  margin: 0;
+  padding: 3px 0;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: #655b20;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 22px;
+  text-decoration: none;
+}
+.todo-btn:hover { background: transparent; color: #302b27; text-decoration: underline; }
+.is-completed { background: #f3f5f6; }
+.is-completed::after { border-top-color: #f3f5f6; }
+.is-completed .task-text { color: #687681; }
+.empty-state { padding: 34px 12px; text-align: center; color: var(--muted); font-size: 13px; line-height: 2; }
+.back-link { color: var(--ink); text-decoration: none; font-size: 24px; }
+.composer-footer { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 12px; }
+.composer-footer button { margin: 0; }
+.completion-label { display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer; }
+input[type="checkbox"] { width: 18px; height: 18px; accent-color: #685900; }
+.return-link { display: block; margin-top: 24px; text-align: center; color: #344c60; font-size: 13px; }
+@media (max-width: 560px) {
+  body { padding: 0; background: var(--chat-bg); }
+  main { min-height: 100dvh; border: 0; border-radius: 0; box-shadow: none; }
+  .chat-header { padding: 20px; }
+  .chat-body { padding: 20px; }
+}

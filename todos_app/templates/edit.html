@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main>
+    <header class="chat-header">
+        <a href="/" class="back-link" aria-label="메모 목록으로 돌아가기">←</a>
+        <span class="avatar" aria-hidden="true">나</span>
+        <div><h1>메모 수정</h1><p>생각이 바뀌어도 괜찮아요</p></div>
+    </header>
+    <div class="chat-body">
+        <p class="date-divider">나에게 남긴 기록 다듬기</p>
+        <form action="/edit/{{todo.id}}" method="post" class="composer">
+            <textarea name="task" rows="5" aria-label="메모 내용" required>{{todo.task}}</textarea>
+            <div class="composer-footer">
+                <label class="completion-label" for="completed">
+                    <input type="checkbox" id="completed" name="completed" {% if todo.completed %}checked{% endif %}>
+                    완료한 메모
+                </label>
+                <button type="submit">저장</button>
+            </div>
+        </form>
+        <a href="/" class="return-link">메모 목록으로 돌아가기</a>
+    </div>
+</main>
+{% endblock content %}
